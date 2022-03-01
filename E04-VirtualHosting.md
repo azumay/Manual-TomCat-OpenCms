@@ -74,3 +74,9 @@ Dejaremos las opciones por defecto
 
 Y ahora esperaremos que acabe con la instalación
 ![OpenCms ](img/2.2.1.png)
+
+Si no hay problemas durante la instalación, nos debe aparecer el siguiente mensaje al final de la instalación:
+![OpenCms ](img/2.2.2.png)
+
+Una vez finalizado todo el proceso de instalación, nos va a redirigir hacía la página principal de nuestro OpenCms
+![OpenCms ](img/2.2.4.png)
