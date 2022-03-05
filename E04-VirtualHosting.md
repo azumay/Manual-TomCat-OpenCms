@@ -80,3 +80,39 @@ Si no hay problemas durante la instalación, nos debe aparecer el siguiente mens
 
 Una vez finalizado todo el proceso de instalación, nos va a redirigir hacía la página principal de nuestro OpenCms
 ![OpenCms ](img/2.2.4.png)
+
+
+## Configurar Tomcat para utilizar un certificado SSL
+
+Para habilitar el acceso por el puerto seguro necesitamos crear un certificado y darle la ruta a nuestro servidor de TomCat.
+
+Para conseguir esto primero deberemos crear el certificado.
+
+Para crearlo debemos ejecutar el siguiente comando. **Es necesario tener java instalado
+para poder ejecutar el pedido.**
+
+>keytool -genkey -alias tomcat -keyalg RSA -keystore /home/xyamuza
+
+Este comando crea en el home del usuario que lo ejecuta,
+despues podemos moverlo al siguiente directorio **/tmp** de TomCat.
+
+Una vez tenemos el .keystore movido, debemos editar el archivo **server.xml** que encontraremos en la siguiente ruta:
+
+>home/xyamuza/Descargas/apache-tomcat-8.5.76/conf/server.xml
+
+- Aquí deberíamos añadir las siguientes líneas:
+
+<code>
+< Connector
+protocol="org.apache.coyote.http11.Http11NioProtocol"
+port="​ 8443​ " maxThreads="200"
+scheme="https" secure="true" SSLEnabled="true"
+keystoreFile="​ /tmp/.keystore​ " keystorePass="​ passwordkeystore​ "
+clientAuth="false" sslProtocol="TLS"/>
+</code>
+
+Con esto hara que busque el certificado SSL el servidor
+
+![OpenCms ](img/ssl-final.png)
+
+![OpenCms ](img/ssl-final2.png)
